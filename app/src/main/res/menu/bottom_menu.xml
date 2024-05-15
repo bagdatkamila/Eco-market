@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeFragment"
+        app:showAsAction="withText"
+        android:icon="@drawable/bg_home_nav"
+        android:title="Главная" />
+
+    <item
+        android:id="@+id/basketFragment"
+        app:showAsAction="withText"
+        android:icon="@drawable/bg_basket_nav"
+        android:title="Корзина" />
+
+    <item
+        android:id="@+id/historyFragment"
+        app:showAsAction="withText"
+        android:icon="@drawable/bg_history_nav"
+        android:title="История" />
+
+    <item
+        android:id="@+id/infoFragment"
+        app:showAsAction="withText"
+        android:icon="@drawable/bg_info_nav"
+        android:title="Инфо" />
+
+
+</menu>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.basket.BasketFragment"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.info.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="postionSelected"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_bottomDialogFragment"
+            app:destination="@id/bottomDialogFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomDialogFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.bottomDialog.BottomDialogFragment"
+        android:label="fragment_bottom_dialog"
+        tools:layout="@layout/fragment_bottom_dialog">
+        <argument
+            android:name="product"
+            app:argType="com.example.neobischallengeandroidapp.module.DetailModel" />
+    </dialog>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.neobischallengeandroidapp.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_searchFragment_to_bottomDialogFragment"
+            app:destination="@id/bottomDialogFragment" />
+
+    </fragment>
+</navigation>
