@@ -72,3 +72,5 @@ class MainActivity : AppCompatActivity() {
         _binding = null
     }
 }
+
+//Tut byla kama
