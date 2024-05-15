@@ -1,7 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.EcoMarket" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NeobisChallengeAndroidApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+         <item name="colorPrimary">@color/white</item>
+    </style>
+    <style name="BottomNavViewTextStyle" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="textAllCaps">false</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+    <style name="Theme.NeobisChallengeAndroidApp" parent="Base.Theme.NeobisChallengeAndroidApp" />
+    <style name="some_id">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 </resources>

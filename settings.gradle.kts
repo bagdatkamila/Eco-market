@@ -16,9 +16,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url =uri("https://jitpack.io")
+        }
     }
 }
 
-rootProject.name = "EcoMarket"
+rootProject.name = "NeobisChallengeAndroidApp"
 include(":app")
- 
