@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.ecomarket.R
 import com.example.ecomarket.adapter.Horizontaladapter
 import com.example.ecomarket.adapter.VerticalAdapter
 import com.example.ecomarket.databinding.FragmentDetailBinding
@@ -50,11 +52,10 @@ class DetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        horizonlatAdpater = Horizontaladapter(requireContext()) { selectedPosition ->
-            binding.rvVerticalCategory.visibility = View.VISIBLE
-            binding.rvVerticalSearch.visibility = View.GONE
-            horizonlatAdpater.updateSelectedItem(selectedPosition)
-            viewModel.fetchProducts(arrayList[selectedPosition].name!!)
+        super.onViewCreated(view, savedInstanceState)
+        val ivProduct: ImageView = view.findViewById(R.id.iv_product)
+        ivProduct.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
         }
         verticalAdapter = VerticalAdapter { id ->
             val detailModel = arrayListVertical[id]
