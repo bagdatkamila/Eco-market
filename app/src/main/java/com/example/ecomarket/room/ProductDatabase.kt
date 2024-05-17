@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.ecomarket.module.Product
 
+// Определение базы данных Room для продуктов
 @Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class ProductDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
@@ -14,6 +15,7 @@ abstract class ProductDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ProductDatabase? = null
 
+        // Получение экземпляра базы данных (Singleton)
         fun getDatabase(context: Context): ProductDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
