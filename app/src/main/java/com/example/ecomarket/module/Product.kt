@@ -9,6 +9,6 @@ data class Product(
     val id: Long = 0,
     val name: String,
     val image: String,
-    val count: Int,
+    var count: Int,
     val price: Double
 )
