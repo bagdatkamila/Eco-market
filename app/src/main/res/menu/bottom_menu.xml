@@ -14,11 +14,11 @@
         android:icon="@drawable/bg_basket_nav"
         android:title="Корзина" />
 
-    <item
-        android:id="@+id/historyFragment"
-        app:showAsAction="withText"
-        android:icon="@drawable/bg_history_nav"
-        android:title="История" />
+<!--    <item-->
+<!--        android:id="@+id/historyFragment"-->
+<!--        app:showAsAction="withText"-->
+<!--        android:icon="@drawable/bg_history_nav"-->
+<!--        android:title="История" />-->
 
     <item
         android:id="@+id/infoFragment"
