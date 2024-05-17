@@ -57,7 +57,16 @@ class DetailFragment : Fragment() {
         ivProduct.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
-        verticalAdapter = VerticalAdapter { id ->
+
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        // Initialize ViewModel
+        basketViewModel = ViewModelProvider(this).get(BasketViewModel::class.java)
+        // Observe changes in products
+        basketViewModel.allProducts.observe(viewLifecycleOwner, Observer { products ->
+            // Update your UI or perform actions when products change
+        })
+
+        verticalAdapter = VerticalAdapter ({ id ->
             val detailModel = arrayListVertical[id]
             val product = Product(
                 name = detailModel.title,
@@ -71,14 +80,9 @@ class DetailFragment : Fragment() {
                     arrayListVertical[id]
                 )
             )
-        }
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // Initialize ViewModel
-        basketViewModel = ViewModelProvider(this).get(BasketViewModel::class.java)
-        // Observe changes in products
-        basketViewModel.allProducts.observe(viewLifecycleOwner, Observer { products ->
-            // Update your UI or perform actions when products change
-        })
+        },
+            basketViewModel
+        )
 
 
 
@@ -132,7 +136,7 @@ class DetailFragment : Fragment() {
                 getProducts(text.toString())
                 binding.rvVerticalCategory.visibility = View.GONE
                 binding.rvVerticalSearch.visibility = View.VISIBLE
-                //   findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToSearchFragment(text.toString()))
+//                findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToSearchFragment(text.toString()))
             }
 
             override fun onButtonClicked(buttonCode: Int) {

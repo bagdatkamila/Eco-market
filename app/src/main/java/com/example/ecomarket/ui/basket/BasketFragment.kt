@@ -30,13 +30,25 @@ class BasketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = BasketAdapter(requireContext())
+        basketViewModel = ViewModelProvider(this).get(BasketViewModel::class.java)
+
+        adapter = BasketAdapter(requireContext(), basketViewModel)
         binding.rvSavedProduct.adapter = adapter
 
-        basketViewModel = ViewModelProvider(this).get(BasketViewModel::class.java)
+
 
         basketViewModel.allProducts.observe(viewLifecycleOwner, Observer { products ->
             adapter.setData(products)
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        basketViewModel.allProducts.observe(viewLifecycleOwner, Observer { products ->
+            adapter.setData(products)
+        })
+
+        basketViewModel.getAllProducts()
     }
 }

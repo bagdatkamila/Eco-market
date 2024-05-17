@@ -26,4 +26,20 @@ class ProductRepository(private val productDao: ProductDao) {
             e.printStackTrace()
         }
     }
+
+    suspend fun deleteProduct(product: Product) {
+        try {
+            productDao.deleteProduct(product)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    suspend fun updateProduct(product: Product) {
+        try {
+            productDao.updateProduct(product)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }
