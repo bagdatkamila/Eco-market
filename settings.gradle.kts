@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NeobisChallengeAndroidApp"
+rootProject.name = "EcoMarket"
 include(":app")

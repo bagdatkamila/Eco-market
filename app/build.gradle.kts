@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.neobischallengeandroidapp"
+    namespace = "com.example.ecomarket"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.neobischallengeandroidapp"
+        applicationId = "com.example.ecomarket"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
