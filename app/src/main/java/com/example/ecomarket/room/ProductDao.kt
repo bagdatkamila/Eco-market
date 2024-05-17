@@ -8,7 +8,8 @@ import com.example.ecomarket.module.Product
 // DAO для управления продуктами в базе данных
 @Dao
 interface ProductDao {
-    @Insert     // Метод для вставки продукта
+    // Метод для вставки продукта
+    @Insert
     suspend fun insertProduct(product: Product)
 
     // Метод для получения всех продуктов

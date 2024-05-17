@@ -22,7 +22,10 @@ abstract class ProductDatabase : RoomDatabase() {
                     context.applicationContext,
                     ProductDatabase::class.java,
                     "product_database"
-                ).build()
+                )
+                    // Добавление миграции
+                    .addMigrations(/* миграции здесь */)
+                    .build()
                 INSTANCE = instance
                 instance
             }
