@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.ecomarket.databinding.ItemDetailVerticalBinding
 import com.example.ecomarket.module.DetailModel
+import com.example.ecomarket.module.toProduct
+import com.example.ecomarket.room.BasketViewModel
 import java.text.NumberFormat
 
-class VerticalAdapter(val onClick : (Int) -> Unit): RecyclerView.Adapter<VerticalAdapter.CategoryViewHolder>() {
+class VerticalAdapter(private val onClick : (Int) -> Unit,
+                      private val basketViewModel: BasketViewModel
+): RecyclerView.Adapter<VerticalAdapter.CategoryViewHolder>() {
 
 
     private val categoryList = arrayListOf<DetailModel>()
@@ -46,15 +50,19 @@ class VerticalAdapter(val onClick : (Int) -> Unit): RecyclerView.Adapter<Vertica
         holder.bind(categoryList[position])
         holder.image.load(categoryList[position].image)
 
+        val product = categoryList[position].toProduct()
+
         holder.itemView.setOnClickListener {
             onClick.invoke(position)
         }
 
         holder.btn_add.setOnClickListener {
+            basketViewModel.insertProduct(product)
             if (addProduct) {
                 holder.rel_btn.visibility = View.GONE
                 holder.btn_add.visibility = View.VISIBLE
                 addProduct = true
+
             } else {
                 holder.rel_btn.visibility = View.VISIBLE
                 holder.btn_add.visibility = View.GONE

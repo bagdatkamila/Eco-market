@@ -15,3 +15,13 @@ data class DetailModel(
 ): Parcelable {
 
 }
+
+fun DetailModel.toProduct(): Product {
+    return Product(
+        id = this.id.toLong(),
+        name = this.title,
+        image = this.image,
+        count = this.quantity,
+        price = this.price
+    )
+}

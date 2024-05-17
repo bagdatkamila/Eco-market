@@ -39,4 +39,37 @@ class BasketViewModel(application: Application) : AndroidViewModel(application) 
             }
         }
     }
+
+    // Добавляем новую функцию для получения всех продуктов
+    fun getAllProducts() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                allProducts = repository.getAllProducts().asLiveData()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    // Функция для удаления продукта из базы данных
+    fun deleteProduct(product: Product) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.deleteProduct(product)
+            } catch (e: Exception) {
+                // Обработка ошибок при удалении продукта
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun updateProduct(product: Product) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.updateProduct(product)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 }

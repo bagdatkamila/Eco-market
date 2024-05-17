@@ -8,9 +8,10 @@ import androidx.room.Room
 import coil.load
 import com.example.ecomarket.databinding.ItemSavedBinding
 import com.example.ecomarket.module.Product
+import com.example.ecomarket.room.BasketViewModel
 
 
-class BasketAdapter(private val context: Context) : RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
+class BasketAdapter(private val context: Context, private val basketViewModel: BasketViewModel) : RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
 
     private var productList = emptyList<Product>()
 
@@ -24,21 +25,25 @@ class BasketAdapter(private val context: Context) : RecyclerView.Adapter<BasketA
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
         val product = productList[position]
         holder.binding.tvName.text = product.name
-        holder.binding.tvPrice.text = product.price.toString()
+        holder.binding.tvPrice.text = (product.price * product.count).toString()
         holder.binding.tvCount.text = product.count.toString()
         holder.binding.tvDesc.text = "Цена за штуку: ${product.price}"
         holder.binding.ivProduct.load(product.image)
 
         holder.binding.btnMinus.setOnClickListener {
-            if (product.count > 0) {
+            if (product.count > 1) {
                 product.count--
-                updateProduct(product)
             }
+            else{
+                basketViewModel.deleteProduct(product)// Удаляем продукт из базы данных
+            }
+            notifyDataSetChanged()
         }
 
         holder.binding.btnPlus.setOnClickListener {
             product.count++
-            updateProduct(product)
+            basketViewModel.updateProduct(product)
+            notifyDataSetChanged()
         }
     }
 
@@ -49,7 +54,9 @@ class BasketAdapter(private val context: Context) : RecyclerView.Adapter<BasketA
         notifyDataSetChanged()
     }
 
-    private fun updateProduct(product: Product) {
-//   тут должно было быть обновление данных в базе данных, но мы не поняли как это в адаптере сделать
+    fun updateData(){
+        notifyDataSetChanged()
     }
+
+//dif util не смог...
 }
