@@ -73,4 +73,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-//Tut byla kama
