@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
                 }
             }
             // For example, you can use an adapter for RecyclerView
-            homeAdapter.setData(categories)
+            homeAdapter.submitList(categories)
             with(binding.rvPopular) {
                 layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
                 setHasFixedSize(true)

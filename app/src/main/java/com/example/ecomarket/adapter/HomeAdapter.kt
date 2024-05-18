@@ -2,12 +2,14 @@ package com.example.ecomarket.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.ecomarket.databinding.ItemProductBinding
 import com.example.ecomarket.module.CategoryModel
 
-class HomeAdapter(private val onClickListener:(Int)->Unit) : RecyclerView.Adapter<HomeAdapter.CategoryViewHolder>() {
+class HomeAdapter(private val onClickListener:(Int)->Unit) : ListAdapter<CategoryModel, HomeAdapter.CategoryViewHolder>(CategoryDiffCallback()) {
     private lateinit var listener:OnItemClickListener
     interface OnItemClickListener{
         fun onItemClick(position: Int)
@@ -17,13 +19,7 @@ class HomeAdapter(private val onClickListener:(Int)->Unit) : RecyclerView.Adapte
         this.listener = listener
     }
 
-    private val categoryList = arrayListOf<CategoryModel>()
     var onClick: (String) -> Unit = {}
-    fun setData(itemList: List<CategoryModel>) {
-        categoryList.clear()
-        categoryList.addAll(itemList)
-        notifyItemChanged(itemList.size)
-    }
 
     class CategoryViewHolder(private val cardCategoryBinding: ItemProductBinding) :
         RecyclerView.ViewHolder(cardCategoryBinding.root) {
@@ -40,14 +36,19 @@ class HomeAdapter(private val onClickListener:(Int)->Unit) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(categoryList[position], onClick)
+        holder.bind(getItem(position), onClick)
         holder.itemView.setOnClickListener {
             onClickListener.invoke(position)
         }
     }
 
-    override fun getItemCount(): Int {
-        return categoryList.size
-    }
+    class CategoryDiffCallback : DiffUtil.ItemCallback<CategoryModel>() {
+        override fun areItemsTheSame(oldItem: CategoryModel, newItem: CategoryModel): Boolean {
+            return oldItem == newItem
+        }
 
+        override fun areContentsTheSame(oldItem: CategoryModel, newItem: CategoryModel): Boolean {
+            return oldItem == newItem
+        }
+    }
 }
