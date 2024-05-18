@@ -52,6 +52,12 @@ class DetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        horizonlatAdpater = Horizontaladapter(requireContext()) { selectedPosition ->
+            binding.rvVerticalCategory.visibility = View.VISIBLE
+            binding.rvVerticalSearch.visibility = View.GONE
+            horizonlatAdpater.updateSelectedItem(selectedPosition)
+            viewModel.fetchProducts(arrayList[selectedPosition].name!!)
+        }
         super.onViewCreated(view, savedInstanceState)
         val ivProduct: ImageView = view.findViewById(R.id.iv_product)
         ivProduct.setOnClickListener {
@@ -104,14 +110,10 @@ class DetailFragment : Fragment() {
         viewModel.detailCategory.observe(viewLifecycleOwner, { products ->
             // Update UI with the list of products
             // e.g., update RecyclerView adapter
+            arrayListVertical.clear()
             arrayListVertical.addAll(products)
             verticalAdapter.setData(products)
-            if(!products.isEmpty()) {
-                Log.d("Product Info", "Number of products: ${products.size}")
-            }
-            else {
-                Log.d("Product Info", "No products available")
-            }
+
             with(binding.rvVerticalCategory) {
                 layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
                 setHasFixedSize(true)
